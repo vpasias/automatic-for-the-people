@@ -22,6 +22,8 @@ l2_ports:
       vlanid: 10
     - iface: swp6
       vlanid: 10
+    - iface: swp7
+      vlanid: 10
   nxos:
     - iface: Eth1/3
       vlanid: 10
