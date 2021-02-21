@@ -12,4 +12,4 @@ NOS_BOX = {
   "eos" => "arista/veos"
 }
 
-SERVER_BOX = "generic/ubuntu2004"
+SERVER_BOX = "generic/ubuntu1804"
