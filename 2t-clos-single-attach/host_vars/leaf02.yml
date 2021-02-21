@@ -15,9 +15,13 @@ vtep_ip:
 l2_ports:
   cumulus:
     - iface: swp3
-      vlanid: 20
+      vlanid: 10
     - iface: swp4
-      vlanid: 30
+      vlanid: 10
+    - iface: swp5
+      vlanid: 10
+    - iface: swp6
+      vlanid: 10
   nxos:
     - iface: Eth1/3
       vlanid: 20
