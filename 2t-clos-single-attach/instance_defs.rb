@@ -9,7 +9,7 @@ SPINE_NOS = "cumulus"
 LEAF_NOS = "cumulus"
 EXIT_NOS = "cumulus"
 DCEDGE_NOS = "cumulus"
-FIREWALL_NOS = "ubuntu"         # Using generic/ubuntu1804
+FIREWALL_NOS = "ubuntu"         # Using generic/ubuntu2004
 
 # IP address 127.0.0.1 is used by spine node end of ISL
 # IP address 127.0.0.2 is used by leaf node end of ISL
