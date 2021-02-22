@@ -8,10 +8,10 @@ NOS_MEM = {
 NOS_BOX = {
   "cumulus" => "CumulusCommunity/cumulus-vx",
   "nxos" => "cisco/nxosv",
-  "junos" => "modonovan/vqfx10k-re_hyperv",
+  "junos" => "juniper/vqfx10k-re",
   "eos" => "arista/veos"
 }
 
 SERVER_BOX = "generic/ubuntu2004"
-# modonovan/vqfx10k-re_hyperv
+#"junos" => "modonovan/vqfx10k-re_hyperv"
 #"junos" => "juniper/vqfx10k-re"
