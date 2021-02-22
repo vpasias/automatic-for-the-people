@@ -14,4 +14,3 @@ NOS_BOX = {
 
 SERVER_BOX = "generic/ubuntu2004"
 #"junos" => "modonovan/vqfx10k-re_hyperv"
-#"junos" => "juniper/vqfx10k-re"
