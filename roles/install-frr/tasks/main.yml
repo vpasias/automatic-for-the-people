@@ -6,7 +6,7 @@
 
  - name: Add FRR repo
    apt_repository:
-     repo: deb https://deb-us.frrouting.org/frr bionic frr-stable
+     repo: deb https://deb-us.frrouting.org/frr focal frr-stable
      state: present
      update_cache: yes
 
