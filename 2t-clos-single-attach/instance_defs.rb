@@ -8,7 +8,7 @@ NUM_SERVERS_PER_LEAF = 2
 SPINE_NOS = "cumulus"
 LEAF_NOS = "cumulus"
 EXIT_NOS = "cumulus"
-DCEDGE_NOS = "junos"
+DCEDGE_NOS = "cumulus"
 FIREWALL_NOS = "ubuntu"         # Using generic/ubuntu2004
 
 # IP address 127.0.0.1 is used by spine node end of ISL
