@@ -225,10 +225,18 @@ ebgp_cfg:
       swp3:
         address: 169.254.2.4/31
         peer: 169.254.2.5
-        remote_asn: 65201
+        remote_asn: 65103
       swp4:
         address: 169.254.2.6/31
         peer: 169.254.2.7
+        remote_asn: 65104
+      swp5:
+        address: 169.254.2.8/31
+        peer: 169.254.2.9
+        remote_asn: 65201
+      swp6:
+        address: 169.254.2.10/31
+        peer: 169.254.2.11
         remote_asn: 65202
     spine02:
       swp1:
@@ -242,10 +250,18 @@ ebgp_cfg:
       swp3:
         address: 169.254.3.4/31
         peer: 169.254.3.5
-        remote_asn: 65201
+        remote_asn: 65103
       swp4:
         address: 169.254.3.6/31
         peer: 169.254.3.7
+        remote_asn: 65104
+      swp5:
+        address: 169.254.3.8/31
+        peer: 169.254.3.9
+        remote_asn: 65201
+      swp6:
+        address: 169.254.3.10/31
+        peer: 169.254.3.11
         remote_asn: 65202
     leaf01:
       swp1:
@@ -265,7 +281,7 @@ ebgp_cfg:
         address: 169.254.3.3/31
         peer: 169.254.3.2
         remote_asn: 65000
-    exit01:
+    leaf03:
       swp1:
         address: 169.254.2.5/31
         peer: 169.254.2.4
@@ -274,7 +290,7 @@ ebgp_cfg:
         address: 169.254.3.5/31
         peer: 169.254.3.4
         remote_asn: 65000
-    exit02:
+    leaf04:
       swp1:
         address: 169.254.2.7/31
         peer: 169.254.2.6
@@ -282,6 +298,24 @@ ebgp_cfg:
       swp2:
         address: 169.254.3.7/31
         peer: 169.254.3.6
+        remote_asn: 65000
+    exit01:
+      swp1:
+        address: 169.254.2.9/31
+        peer: 169.254.2.8
+        remote_asn: 65000
+      swp2:
+        address: 169.254.3.9/31
+        peer: 169.254.3.8
+        remote_asn: 65000
+    exit02:
+      swp1:
+        address: 169.254.2.11/31
+        peer: 169.254.2.10
+        remote_asn: 65000
+      swp2:
+        address: 169.254.3.11/31
+        peer: 169.254.3.10
         remote_asn: 65000
 
         
