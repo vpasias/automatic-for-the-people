@@ -1,0 +1,36 @@
+loopback_ip: 10.0.0.13/32
+hw_address: 44:39:39:FF:40:97
+bgp_asn: "{{ ibgp_asn }}"
+
+vtep_ip:
+  cumulus:
+    - "{{ loopback_ip }}"
+  eos:
+    - "{{ loopback_ip }}"
+  junos:
+    - "{{ loopback_ip }}"
+  nxos:
+    - 10.0.0.203/32
+
+l2_ports:
+  cumulus:
+    - iface: swp3
+      vlanid: 20
+    - iface: swp4
+      vlanid: 30
+  nxos:
+    - iface: Eth1/3
+      vlanid: 20
+    - iface: Eth1/4
+      vlanid: 30
+  eos:
+    - iface: Eth3
+      vlanid: 20
+    - iface: Eth4
+      vlanid: 30
+  junos:
+    - iface: xe-0/0/2
+      vlanid: 20
+    - iface: xe-0/0/3
+      vlanid: 30
+
