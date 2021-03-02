@@ -11,7 +11,7 @@ The Vagrant boxes used in the simulation include:
 | cisco/nxosv                       | 9.3.4       |
 | arista/veos                       | 4.23.5M     |
 | Juniper/vqfx10k                   | 0.4.0       |
-| generic/ubuntu1804                | latest      |
+| generic/ubuntu2004                | latest      |
 
 
 ## Software Used
