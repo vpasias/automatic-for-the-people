@@ -14,8 +14,10 @@ vtep_ip:
 
 l2_ports:
   cumulus:
-    - iface: swp3
+    - iface: swp3.10
       vlanid: 10
+    - iface: swp3.30
+      vlanid: 30
     - iface: swp4
       vlanid: 20
     - iface: swp5
