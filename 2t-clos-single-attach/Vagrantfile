@@ -363,6 +363,8 @@ Vagrant.configure("2") do |config|
           v.cpus = 4
           v.nested = true
           v.cpu_mode = "host-passthrough"
+          v.storage :file, :size => '100G', :bus => 'scsi'  # Operating System
+          v.storage :file, :size => '20G', :bus => 'scsi'  # Data disk (e.g. for Ceph OSD)
         end
 
         server.vm.synced_folder ".", "/vagrant", id: "vagrant-root", disabled: true
