@@ -19,5 +19,5 @@ NOS_VERSION = {
   "junos" => "0.4.0",
 }
 
-SERVER_BOX = "generic/ubuntu1804"
-FIREWALL_BOX = "generic/ubuntu1804"
+SERVER_BOX = "generic/ubuntu2004"
+FIREWALL_BOX = "generic/ubuntu2004"
