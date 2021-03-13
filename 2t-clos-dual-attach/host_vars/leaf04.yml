@@ -1,4 +1,5 @@
 loopback_ip: 10.0.0.14/32
+mlag_backup-ip: 10.0.0.14
 hw_address: 44:39:39:FF:40:96
 bgp_asn: "{{ ibgp_asn }}"
 
