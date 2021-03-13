@@ -13,7 +13,7 @@ NOS_BOX = {
 }
 
 NOS_VERSION = {
-  "cumulus" => "> 3.7.5, < 4.2.0",
+  "cumulus" => "> 3.7.5",
   "nxos" => "0",
   "eos" => "4.23.5M",
   "junos" => "0.4.0",
