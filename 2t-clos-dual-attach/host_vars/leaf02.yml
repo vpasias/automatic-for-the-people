@@ -8,6 +8,7 @@ mlag_info:
   vpc_domainid: 12
   peer_switch: leaf01
   peerlink_ip: 169.254.1.1/31
+  mlag_backup_ip: 10.0.0.12
 
 
 vtep_ip:
