@@ -1,7 +1,6 @@
 loopback_ip: 10.0.0.13/32
 hw_address: 44:39:39:FF:40:96
 bgp_asn: "{{ ibgp_asn }}"
-
 mlag_info:
   clag_sysid: "{{ hw_address }}"
   eos_domainid: mlag_leaf34
