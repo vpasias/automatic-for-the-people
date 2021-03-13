@@ -405,7 +405,12 @@ Vagrant.configure("2") do |config|
 
 	server.vm.provider :libvirt do |v|
       	  v.nic_model_type = 'e1000' 
-          v.memory = 512
+          v.memory = 16384
+          v.cpus = 4
+          v.nested = true
+          v.cpu_mode = "host-passthrough"
+          v.storage :file, :size => '100G', :bus => 'scsi'  # Operating System
+          v.storage :file, :size => '20G', :bus => 'scsi'  # Data disk (e.g. for Ceph OSD)
         end
         
         server.vm.network :private_network,
