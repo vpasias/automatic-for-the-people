@@ -1,5 +1,4 @@
 loopback_ip: 10.0.0.14/32
-mlag_backup-ip: 10.0.0.14
 hw_address: 44:39:39:FF:40:96
 bgp_asn: "{{ ibgp_asn }}"
 
@@ -9,6 +8,7 @@ mlag_info:
   vpc_domainid: 34
   peer_switch: leaf03
   peerlink_ip: 169.254.1.1/31
+  mlag_backup_ip: 10.0.0.14
 
 vtep_ip:
   cumulus:
