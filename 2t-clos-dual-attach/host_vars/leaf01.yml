@@ -57,5 +57,3 @@ l2_ports:
       vlanid: 10
     - iface: xe-0/0/5
       vlanid: 20
-
-    
