@@ -35,6 +35,15 @@ l2_networks:
     mcast_grp: 224.1.1.192
     ip_subnet: 172.16.3.0/24    
     vrf: evpn-vrf
+    
+  40:
+    vnid: 40
+    vlanif: Vlan40
+    ip_address: 172.16.4.254/24
+    ip_unique: 172.16.4.1/24        
+    mcast_grp: 224.1.1.192
+    ip_subnet: 172.16.4.0/24    
+    vrf: evpn-vrf
 
 evpn_l3_info:
   - vlan: 999
@@ -49,6 +58,10 @@ evpn_l3_info:
         10.0.0.103/32
       leaf04:
         10.0.0.104/32
+      leaf05:
+        10.0.0.105/32
+      leaf06:
+        10.0.0.106/32
       exit01:
         10.0.0.121/32
       exit02:
