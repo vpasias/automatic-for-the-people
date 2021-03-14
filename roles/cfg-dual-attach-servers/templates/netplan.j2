@@ -1,1 +1,40 @@
-
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth1:
+      dhcp4: no
+    eth2:
+      dhcp4: no
+  bonds:
+    bond0:
+      dhcp4: false
+      interfaces:
+        - eth1
+        - eth2
+      addresses: [ {{ server_ip }} ]
+      parameters:
+        mode: 802.3ad
+        mii-monitor-interval: 100
+        lacp-rate: fast
+        min-links: 1
+        transmit-hash-policy: layer3+4
+      routes:
+        - to: 172.16.0.0/16
+          via: {{ gateway }}
+  vlans:
+    bond0.100:
+      id: 100
+      link: bond0
+      dhcp4: no
+      optional: true
+    bond0.200:
+      id: 200
+      link: bond0
+      dhcp4: no
+      optional: true
+    bond0.300:
+      id: 300
+      link: bond0
+      dhcp4: no
+      optional: true
