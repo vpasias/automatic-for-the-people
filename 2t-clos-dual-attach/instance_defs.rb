@@ -3,7 +3,7 @@ NUM_LEAVES = 6
 NUM_EXIT_LEAVES = 2
 NUM_DCEDGE_RTRS = 1             # Hardcoded
 NUM_FIREWALL = 1                # Hardcoded
-NUM_SERVERS_PER_LEAF = 3
+NUM_SERVERS_PER_LEAF = 4
 
 SPINE_NOS = "cumulus"
 LEAF_NOS = "cumulus"
