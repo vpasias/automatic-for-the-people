@@ -1,13 +1,13 @@
-loopback_ip: 10.0.0.15/32
-hw_address: 44:39:39:FF:40:97
+loopback_ip: 10.0.0.16/32
+hw_address: 44:39:39:FF:40:98
 bgp_asn: "{{ ibgp_asn }}"
 mlag_info:
   clag_sysid: "{{ hw_address }}"
   eos_domainid: mlag_leaf56
   vpc_domainid: 56
-  peer_switch: leaf05
-  peerlink_ip: 169.254.1.0/31
-  mlag_backup_ip: 10.0.0.15
+  peer_switch: leaf06
+  peerlink_ip: 169.254.1.1/31
+  mlag_backup_ip: 10.0.0.16
 
 vtep_ip:
   cumulus:
@@ -17,7 +17,7 @@ vtep_ip:
     - "{{ loopback_ip }}"
     - 10.0.0.156/32
   nxos:
-    - 10.0.0.205/32
+    - 10.0.0.206/32
     - 10.0.0.156/32
 
 
