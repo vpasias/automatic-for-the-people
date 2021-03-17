@@ -5,6 +5,8 @@ ebgp_asn:
   leaf04: 65104
   leaf05: 65105
   leaf06: 65106
+  leaf07: 65107
+  leaf08: 65108
   spine01: 65000
   spine02: 65000
   exit01: 65201
