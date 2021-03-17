@@ -1,1 +1,25 @@
-
+---
+- name: Configure member port channels (Cumulus)
+  become: yes
+  blockinfile:
+    path: /etc/network/interfaces
+    block: |
+      {% for item in mh.mbr_portchannels[ansible_network_os] %}
+      {% for port in item.ports %}
+      auto {{ port }}
+      iface {{ port }}
+         mtu 9000      
+         post-up ip link set promisc on dev {{ port }}
+      {% endfor %}
+      #
+      auto {{ item.iface }}
+      iface {{ item.iface }}
+         bond-slaves {{ item.ports|join(' ') }}
+         mtu 9000
+         es-sys-mac {{ item.mh_id }}
+         mstpctl-portadminedge yes
+         mstpctl-bpduguard yes
+         bond-lacp-bypass-allow yes
+      #
+      {% endfor %}
+    marker: '#{mark} mh-member-ports'
