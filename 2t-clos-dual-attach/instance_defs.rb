@@ -1,5 +1,5 @@
 NUM_SPINES = 2
-NUM_LEAVES = 6
+NUM_LEAVES = 8
 NUM_EXIT_LEAVES = 2
 NUM_DCEDGE_RTRS = 1             # Hardcoded
 NUM_FIREWALL = 1                # Hardcoded
