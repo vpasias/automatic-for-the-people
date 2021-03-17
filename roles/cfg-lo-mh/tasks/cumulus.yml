@@ -1,1 +1,19 @@
+---
+- name: Configure loopback & VTEP IPs, if any (Cumulus)
+  become: yes
+  blockinfile:
+    path: /etc/network/interfaces
+    block: |
+      auto lo
+      iface lo inet loopback
+         address {{ loopback_ip }}
+      {% if vtep_ip is defined %}
+         vxlan-local-tunnelip {{ vtep_ip[ansible_network_os][0] }}
+      {% endif %}
+    marker: "# {mark} lo"
+  notify:
+    - ifup interfaces
 
+- name: Configure VTEP interface (Cumulus)
+  set_fact:
+    vtep_iface: lo
