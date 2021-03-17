@@ -35,9 +35,6 @@
     - role: cfg-ebgp-underlay
       when: underlay == "ebgp"
       tags: underlay
-    - role: cfg-mh
-      when: mh is defined and inventory_hostname in groups['leaf']
-      tags: mh
     - role: cfg-server-ports
       when: inventory_hostname in groups['leaf']
       tags: server-ports
