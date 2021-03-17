@@ -1,0 +1,60 @@
+loopback_ip: 10.0.0.18/32
+hw_address: 44:39:39:FF:40:94
+bgp_asn: "{{ ibgp_asn }}"
+mlag_info:
+  clag_sysid: "{{ hw_address }}"
+  eos_domainid: mlag_leaf78
+  vpc_domainid: 78
+  peer_switch: leaf07
+  peerlink_ip: 169.254.1.1/31
+  mlag_backup_ip: 10.0.0.18
+
+vtep_ip:
+  cumulus:
+    - "{{ loopback_ip }}"
+    - 10.0.0.178/32
+  eos:
+    - "{{ loopback_ip }}"
+    - 10.0.0.178/32
+  nxos:
+    - 10.0.0.208/32
+    - 10.0.0.178/32
+
+
+l2_ports:
+  cumulus:
+    - iface: bond01
+      vlanid: 30
+    - iface: bond02
+      vlanid: 30
+    - iface: bond03
+      vlanid: 30
+    - iface: bond04
+      vlanid: 40
+  nxos:
+    - iface: port-channel3
+      vlanid: 30
+    - iface: port-channel4
+      vlanid: 30
+    - iface: port-channel4
+      vlanid: 30
+    - iface: port-channel5
+      vlanid: 40
+  eos:
+    - iface: port-channel3
+      vlanid: 30
+    - iface: port-channel4
+      vlanid: 30
+    - iface: port-channel5
+      vlanid: 30
+    - iface: port-channel6
+      vlanid: 40
+  junos:
+    - iface: xe-0/0/2
+      vlanid: 30
+    - iface: xe-0/0/3
+      vlanid: 30
+    - iface: xe-0/0/4
+      vlanid: 30
+    - iface: xe-0/0/5
+      vlanid: 40
