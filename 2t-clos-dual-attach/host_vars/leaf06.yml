@@ -24,37 +24,37 @@ vtep_ip:
 l2_ports:
   cumulus:
     - iface: bond01
-      vlanid: 30
+      vlanid: 10
     - iface: bond02
-      vlanid: 30
+      vlanid: 10
     - iface: bond03
-      vlanid: 30
+      vlanid: 10
     - iface: bond04
-      vlanid: 40
+      vlanid: 20
   nxos:
     - iface: port-channel3
-      vlanid: 30
+      vlanid: 10
     - iface: port-channel4
-      vlanid: 30
+      vlanid: 10
     - iface: port-channel4
-      vlanid: 30
+      vlanid: 10
     - iface: port-channel5
-      vlanid: 40
+      vlanid: 20
   eos:
     - iface: port-channel3
-      vlanid: 30
+      vlanid: 10
     - iface: port-channel4
-      vlanid: 30
+      vlanid: 10
     - iface: port-channel5
-      vlanid: 30
+      vlanid: 10
     - iface: port-channel6
-      vlanid: 40
+      vlanid: 20
   junos:
     - iface: xe-0/0/2
-      vlanid: 30
+      vlanid: 10
     - iface: xe-0/0/3
-      vlanid: 30
+      vlanid: 10
     - iface: xe-0/0/4
-      vlanid: 30
+      vlanid: 10
     - iface: xe-0/0/5
-      vlanid: 40
+      vlanid: 20
