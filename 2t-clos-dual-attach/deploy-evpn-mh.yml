@@ -4,7 +4,7 @@
   roles:
     - role: cfg-hostname
       tags: hostname
-    - role: cfg-lo
+    - role: cfg-lo-mh
       tags: loopback
     - role: cfg-lldp
       tags: lldp
