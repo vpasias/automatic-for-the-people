@@ -89,6 +89,28 @@ mlag:
         ports:
           - Eth6
         mlag_id: 6
+mh:
+  peerlink_vlan: 4094
+  peerlink:
+    cumulus: peerlink
+  mh_hostchannels:
+    cumulus:
+      - iface: hostbond01
+        ports:
+          - swp3
+        mh_mac: 44:38:39:ff:ff:01
+      - iface: hostbond02
+        ports:
+          - swp4
+        mmh_mac: 44:38:39:ff:ff:01
+      - iface: hostbond03
+        ports:
+          - swp5
+        mh_mac: 44:38:39:ff:ff:01
+      - iface: hostbond04
+        ports:
+          - swp6
+        mh_mac: 44:38:39:ff:ff:01
   
 # The ID is the VLAN ID; Obviously VLANIDs can only be < 255 with this schemq
 anycast_gw_mac: "00:00:00:11:12:{{ item.vlanid }}"
