@@ -58,7 +58,77 @@
   when: inventory_hostname in groups['spine']
   notify:
     - reload FRR
+
+- name: Configure Uplink Interfaces in FRR (Cumulus)
+  become: yes
+  blockinfile:
+    path: /etc/frr/frr.conf
+    block: |
+      {% for item in isl_ports[ansible_network_os] %}
+      interface {{ item.iface }}
+       evpn mh uplink
+       ip pim
+      {% endfor %}
+    marker: "! {mark} activate"
+  when: inventory_hostname not in groups['spine']
+  notify:
+    - reload FRR
     
+- name: Configure Spine Interfaces in FRR (Cumulus)
+  become: yes
+  blockinfile:
+    path: /etc/frr/frr.conf
+    block: |
+      {% for item in isl_ports[ansible_network_os] %}
+      interface {{ item.iface }}
+       ip pim
+      {% endfor %}
+    marker: "! {mark} activate"
+  when: inventory_hostname in groups['spine']
+  notify:
+    - reload FRR   
+
+- name: Configure Bond Interfaces in FRR (Cumulus)
+  become: yes
+  blockinfile:
+    path: /etc/frr/frr.conf
+    block: |
+      {% for item in mh.mh_hostchannels[ansible_network_os] %}
+      interface {{ item.iface }}
+       es-sys-mac {{ item.mh_mac }}
+       evpn mh es-df-pref 50000
+       evpn mh es-id {{ item.es_id }}
+      {% endfor %}
+    marker: "! {mark} activate"
+  when: inventory_hostname not in groups['spine']
+  notify:
+    - reload FRR
+ 
+- name: Configure Looback Interface in FRR (Cumulus)
+  become: yes
+  blockinfile:
+    path: /etc/frr/frr.conf
+    block: |
+      interface lo
+       ip pim
+    marker: "! {mark} activate"
+  when: inventory_hostname not in groups['spine']
+  notify:
+    - reload FRR
+    
+- name: Configure Looback Interface in FRR (Cumulus)
+  become: yes
+  blockinfile:
+    path: /etc/frr/frr.conf
+    block: |
+      interface lo
+       ip pim
+       ip pim use-source 10.0.0.100
+    marker: "! {mark} activate"
+  when: inventory_hostname in groups['spine']
+  notify:
+    - reload FRR
+
 - name: Configure L3 VNI in FRR (Cumulus)
   become: yes
   blockinfile:
@@ -79,6 +149,7 @@
     block: |
       router bgp {{ ibgp_asn }}
         bgp router-id {{ loopback_ip.split('/')[0] }}
+        bgp bestpath as-path multipath-relax
         no bgp default ipv4-unicast
         neighbor RR peer-group
         neighbor RR remote-as internal
