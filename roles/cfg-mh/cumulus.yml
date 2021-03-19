@@ -1,10 +1,10 @@
 ---
-- name: Configure member port channels (Cumulus)
+- name: Configure member hostbonds (Cumulus)
   become: yes
   blockinfile:
     path: /etc/network/interfaces
     block: |
-      {% for item in mh.mbr_portchannels[ansible_network_os] %}
+      {% for item in mh.mh_hostchannels[ansible_network_os] %}
       {% for port in item.ports %}
       auto {{ port }}
       iface {{ port }}
@@ -16,10 +16,10 @@
       iface {{ item.iface }}
          bond-slaves {{ item.ports|join(' ') }}
          mtu 9000
-         es-sys-mac {{ item.mh_id }}
-         mstpctl-portadminedge yes
-         mstpctl-bpduguard yes
-         bond-lacp-bypass-allow yes
+         es-sys-mac {{ item.mh_mac }}
+         bond-mode 802.3ad
+         bond-min-links 1
+         bond-lacp-rate 1
       #
       {% endfor %}
     marker: '#{mark} mh-member-ports'
