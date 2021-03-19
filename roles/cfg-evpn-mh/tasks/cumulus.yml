@@ -1,4 +1,64 @@
 ---
+- name: Configure Base Settings in FRR (Cumulus)
+  become: yes
+  blockinfile:
+    path: /etc/frr/frr.conf
+    block: |
+      log file /var/log/frr/bgpd.log
+      log timestamp precision 6
+      evpn mh startup-delay 30
+      zebra nexthop proto only
+      ip pim rp 10.0.0.100 239.1.1.0/24
+      ip pim spt-switchover infinity-and-beyond
+      service integrated-vtysh-config
+      !
+      debug bgp evpn mh es
+      debug bgp evpn mh route
+      debug bgp zebra
+      debug zebra evpn mh es
+      debug zebra evpn mh mac
+      debug zebra evpn mh neigh
+      debug zebra evpn mh nh
+      debug zebra vxlan
+      !
+  when: inventory_hostname not in groups['spine']
+  notify:
+    - reload FRR
+    
+- name: Configure Base Settings in FRR (Cumulus)
+  become: yes
+  blockinfile:
+    path: /etc/frr/frr.conf
+    block: |
+      log file /var/log/frr/bgpd.log
+      log timestamp precision 6
+      evpn mh startup-delay 30
+      ip pim rp 10.0.0.100 239.1.1.0/24
+      ip pim spt-switchover infinity-and-beyond
+      service integrated-vtysh-config
+      !
+      debug pim events
+      debug pim zebra
+      debug pim packets register
+      debug pim packets joins
+      debug pim vxlan
+      debug pim mlag
+      debug pim nht
+      debug pim trace
+      debug mroute
+      debug mroute detail
+      debug zebra mlag
+      debug msdp events
+      debug bgp zebra
+      debug zebra vxlan
+      debug zebra kernel
+      debug zebra events
+      debug bgp updates
+      !
+  when: inventory_hostname in groups['spine']
+  notify:
+    - reload FRR
+    
 - name: Configure L3 VNI in FRR (Cumulus)
   become: yes
   blockinfile:
