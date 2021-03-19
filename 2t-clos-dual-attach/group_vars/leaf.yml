@@ -99,18 +99,22 @@ mh:
         ports:
           - swp3
         mh_mac: 44:38:39:ff:ff:01
+        es_id: 1
       - iface: bond02
         ports:
           - swp4
-        mmh_mac: 44:38:39:ff:ff:01
+        mh_mac: 44:38:39:ff:ff:01
+        es_id: 2
       - iface: bond03
         ports:
           - swp5
         mh_mac: 44:38:39:ff:ff:01
+        es_id: 3
       - iface: bond04
         ports:
           - swp6
         mh_mac: 44:38:39:ff:ff:01
+        es_id: 4
   
 # The ID is the VLAN ID; Obviously VLANIDs can only be < 255 with this schemq
 anycast_gw_mac: "00:00:00:11:12:{{ item.vlanid }}"
