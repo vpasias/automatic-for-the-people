@@ -35,13 +35,16 @@
     - role: cfg-ebgp-underlay
       when: underlay == "ebgp"
       tags: underlay
+    - role: cfg-mh
+      when: inventory_hostname in groups['leaf']
+      tags: mh
     - role: cfg-server-ports
       when: inventory_hostname in groups['leaf']
       tags: server-ports
     - role: cfg-vxlan
       when: inventory_hostname not in groups['spine']
       tags: vxlan
-    - role: cfg-evpn
+    - role: cfg-evpn-mh
       tags: evpn
   handlers:
     - name: ifup interfaces
