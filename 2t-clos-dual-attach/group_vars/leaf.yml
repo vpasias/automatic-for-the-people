@@ -95,19 +95,19 @@ mh:
     cumulus: peerlink
   mh_hostchannels:
     cumulus:
-      - iface: hostbond01
+      - iface: bond01
         ports:
           - swp3
         mh_mac: 44:38:39:ff:ff:01
-      - iface: hostbond02
+      - iface: bond02
         ports:
           - swp4
         mmh_mac: 44:38:39:ff:ff:01
-      - iface: hostbond03
+      - iface: bond03
         ports:
           - swp5
         mh_mac: 44:38:39:ff:ff:01
-      - iface: hostbond04
+      - iface: bond04
         ports:
           - swp6
         mh_mac: 44:38:39:ff:ff:01
