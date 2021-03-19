@@ -1,0 +1,93 @@
+---
+- name: Configure L3 VNI in FRR (Cumulus)
+  become: yes
+  blockinfile:
+    path: /etc/frr/frr.conf
+    block: |
+      vrf {{ item.vrf }}
+         vni {{ item.vnid }}
+    marker: "! {mark} l3vni-{{ item.vnid }}"
+  with_items: "{{ evpn_l3_info }}"
+  when: inventory_hostname not in groups['spine']
+  notify:
+    - reload FRR
+  
+- name: iBGP base config (Cumulus)
+  become: yes
+  blockinfile:
+    path: /etc/frr/frr.conf
+    block: |
+      router bgp {{ ibgp_asn }}
+        bgp router-id {{ loopback_ip.split('/')[0] }}
+        no bgp default ipv4-unicast
+        neighbor RR peer-group
+        neighbor RR remote-as internal
+        neighbor RR bfd
+    marker: '! {mark} base-ibgp'
+  notify:
+    - reload FRR
+
+- name: iBGP activate EVPN AFI/SAFI Leaf (Cumulus)
+  become: yes
+  blockinfile:
+    path: /etc/frr/frr.conf
+    block: |
+        address-family l2vpn evpn
+          neighbor RR activate
+          advertise-svi-ip
+          advertise-all-vni
+    marker: "! {mark} activate"
+  when: inventory_hostname not in groups['spine']
+  notify:
+    - reload FRR
+
+- name: iBGP Activate EVPN AFI/SAFI Spine (Cumulus)
+  become: yes
+  blockinfile:
+    path: /etc/frr/frr.conf
+    block: |
+        address-family ipv4 unicast
+           neighbor RR route-reflector-client
+           neighbor RR activate
+           maximum-paths ibgp 16
+         exit-address-family
+         address-family l2vpn evpn
+           neighbor RR route-reflector-client
+           neighbor RR activate
+    marker: "! {mark} activate"
+  when: inventory_hostname in groups['spine']
+  notify:
+    - reload FRR
+
+- name: iBGP neighbor config (Cumulus)
+  become: yes
+  blockinfile:
+    path: /etc/frr/frr.conf
+    block: |
+        neighbor {{ item }} peer-group RR
+    marker: "! {mark} {{ item }}"
+  with_items: "{{ evpn_peers }}"
+  notify:
+    - reload FRR
+
+- name: iBGP EVPN VRFs config for advertising subnet route (Cumulus)
+  become: yes
+  blockinfile:
+    path: /etc/frr/frr.conf
+    block: |
+      {% for item in evpn_l3_info %}
+      router bgp {{ ibgp_asn }} vrf {{ item.vrf }}
+        bgp router-id {{ lo_addr }}
+        address-family ipv4 unicast
+           {% for vid in vid_list %}
+           network {{ l2_networks[vid].ip_subnet }}
+           {% endfor %}
+        !
+        address-family l2vpn evpn
+           advertise ipv4 unicast
+        !
+      {% endfor %}
+    marker: '!{mark} type-5 route'
+  when: inventory_hostname in groups['leaf']
+  notify:
+    - reload FRR
