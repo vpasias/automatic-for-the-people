@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
 
   SPINE_BASE_PORT = BASE_PORT
   LEAF_BASE_PORT = SPINE_BASE_PORT + 100*(NUM_SPINES)
-  EXIT_BASE_PORT = SPINE_BASE_PORT + 100*(NUM_SPINES+NUM_LEAVES) + 100
+  EXIT_BASE_PORT = SPINE_BASE_PORT + 100*(NUM_SPINES+NUM_LEAVES)
   SERVER_BASE_PORT = LEAF_BASE_PORT + 100*(NUM_LEAVES+NUM_EXIT_LEAVES) + 100
 
 
@@ -60,6 +60,7 @@ Vagrant.configure("2") do |config|
       node.vm.provider :libvirt do |v|
         v.memory = NOS_MEM[SPINE_NOS]
         v.management_network_mac = "44:38:39:01:01:"+"%02d"%id
+	v.nic_adapter_count = 32
 
         if SPINE_NOS == "junos"
           v.nic_model_type = "e1000"
@@ -165,6 +166,7 @@ Vagrant.configure("2") do |config|
       node.vm.provider :libvirt do |v|
         v.memory = NOS_MEM[LEAF_NOS]
         v.management_network_mac = "44:38:39:01:02:"+"%02d"%id
+	v.nic_adapter_count = 32
 
         if LEAF_NOS == "junos"
           v.nic_model_type = "e1000"
@@ -298,6 +300,7 @@ Vagrant.configure("2") do |config|
       node.vm.provider :libvirt do |v|
         v.memory = NOS_MEM[EXIT_NOS]
         v.management_network_mac = "44:38:39:01:03:"+"%02d"%id
+	v.nic_adapter_count = 32
 
         if EXIT_NOS == "junos"
           v.nic_model_type = "e1000"
@@ -479,6 +482,7 @@ Vagrant.configure("2") do |config|
       node.vm.provider :libvirt do |v|
         v.memory = NOS_MEM[DCEDGE_NOS]
         v.management_network_mac = "44:38:39:01:03:FE"
+	v.nic_adapter_count = 12
 
         if DCEDGE_NOS == "junos"
           v.nic_model_type = "e1000"
