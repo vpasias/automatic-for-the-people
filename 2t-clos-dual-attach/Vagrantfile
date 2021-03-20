@@ -18,13 +18,14 @@ Vagrant.configure("2") do |config|
 
   # If you have base port at 10900, spine1's port allocation starts at 10900+1*100
   # So, if you have 2 spines, spine1's base_port is 11000, spine2's 11100
-  # So, leaf1's base_port starts at 10900 + 100*(2) + 1*100 = 11200, leaf4's is 10900 + 100(2) + 4*100 = 11500
-  # exit1's base_port starts at 10900 + 100(2+4) + 1*100 = 11600
-  # server101's base port is 11100 + 100(4+2) + 100 = 11800
+  # So, leaf1's base_port starts at 10900 + 100*(2) = 11100, 
+  # leaf8's is 10900 + 100(2) + 8*100 = 11100 + 800 = 11900
+  # exit1's base_port starts at 10900 + 100(2+8) + 100 = 10900 + 1100 = 12000
+  # server101's base port is 11200 + 100(8+2) + 100 = 11200 + 1000 + 100 = 12300
 
   SPINE_BASE_PORT = BASE_PORT
   LEAF_BASE_PORT = SPINE_BASE_PORT + 100*(NUM_SPINES)
-  EXIT_BASE_PORT = SPINE_BASE_PORT + 100*(NUM_SPINES+NUM_LEAVES)
+  EXIT_BASE_PORT = SPINE_BASE_PORT + 100*(NUM_SPINES+NUM_LEAVES) + 100
   SERVER_BASE_PORT = LEAF_BASE_PORT + 100*(NUM_LEAVES+NUM_EXIT_LEAVES) + 100
 
 
