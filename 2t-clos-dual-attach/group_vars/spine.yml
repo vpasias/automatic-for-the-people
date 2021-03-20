@@ -10,6 +10,8 @@ isl_ports:
     - Eth1/8
     - Eth1/9
     - Eth1/10
+    - Eth1/11
+    - Eth1/12
   cumulus:
     - swp1
     - swp2
@@ -21,6 +23,8 @@ isl_ports:
     - swp8
     - swp9
     - swp10
+    - swp11
+    - swp12
   eos:
     - Eth1
     - Eth2
@@ -32,6 +36,8 @@ isl_ports:
     - Eth8
     - Eth9
     - Eth10
+    - Eth11
+    - Eth12
   junos:
     - xe-0/0/0
     - xe-0/0/1
@@ -43,6 +49,8 @@ isl_ports:
     - xe-0/0/7
     - xe-0/0/8
     - xe-0/0/9
+    - xe-0/0/10
+    - xe-0/0/11
 
 evpn_peers:
   - 10.0.0.11
