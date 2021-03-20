@@ -31,7 +31,7 @@ l2_ports:
     - iface: bond03
       vlanid: 10
     - iface: bond04
-      vlanid: 20
+      vlanid: 10
   nxos:
     - iface: port-channel3
       vlanid: 10
@@ -40,7 +40,7 @@ l2_ports:
     - iface: port-channel5
       vlanid: 10
     - iface: port-channel6
-      vlanid: 20
+      vlanid: 10
   eos:
     - iface: port-channel3
       vlanid: 10
@@ -49,7 +49,7 @@ l2_ports:
     - iface: port-channel5
       vlanid: 10
     - iface: port-channel6
-      vlanid: 20
+      vlanid: 10
   junos:
     - iface: xe-0/0/2
       vlanid: 10
@@ -58,4 +58,4 @@ l2_ports:
     - iface: xe-0/0/4
       vlanid: 10
     - iface: xe-0/0/5
-      vlanid: 20
+      vlanid: 10
