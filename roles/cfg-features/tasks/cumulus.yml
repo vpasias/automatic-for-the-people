@@ -9,8 +9,19 @@
     path: /etc/netd.conf
     regexp: '^users_with_show = root, cumulus'
     line: users_with_show = root, cumulus, vagrant
+    
+- name: Enable EVPN-MH in switchd 
+  become: yes
+  lineinfile:
+    path: /etc/cumulus/switchd.conf
+    regexp: '^evpn.multihoming.enable = FALSE'
+    line: evpn.multihoming.enable = TRUE   
 
 - name: Restart netd
   become: yes  
   service: name=netd state=restarted
+  
+- name: Restart switchd
+  become: yes  
+  service: name=switchd state=restarted
   
