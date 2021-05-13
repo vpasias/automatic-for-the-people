@@ -1,5 +1,5 @@
 ---
-- name: Save config
+- name: Backup running config
   include_tasks: "{{ansible_network_os}}.yml"
 
 
