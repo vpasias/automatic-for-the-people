@@ -6,7 +6,6 @@
       int {{ portchannels[ansible_network_os][mlag.peerlink[ansible_network_os]].ports }}
         no shut
         channel-group {{ mlag.peerlink[ansible_network_os][-1] }} mode active
-
 - name: Configure peerlink (EOS)
   connection: network_cli
   cli_config:
@@ -16,33 +15,30 @@
         switchport mode trunk
         spanning-tree link-type point-to-point
         switchport trunk group peertrunk
-
 - name: Configure VLAN Interface on peerlink (EOS)
   connection: network_cli
   cli_config:
     config: |
-      vlan {{ mlag.peerlink_vlan }}
+      vlan {{ mlag.peerlink_vlan[ansible_network_os] }}
         trunk group peertrunk
       !
-      int vlan {{ mlag.peerlink_vlan }}
+      int vlan {{ mlag.peerlink_vlan[ansible_network_os] }}
         ip address {{ mlag_info.peerlink_ip }}
         no autostate
         no shut
       !
-      no spanning-tree vlan-id 4094
-
+      no spanning-tree vlan-id {{ mlag.peerlink_vlan[ansible_network_os] }}
 - name: Configure MLAG (EOS)
   connection: network_cli
   cli_config:
     config: |
       mlag configuration
-        local-interface vlan {{ mlag.peerlink_vlan }}
+        local-interface vlan {{ mlag.peerlink_vlan[ansible_network_os] }}
         peer-address {{ hostvars[mlag_info.peer_switch].mlag_info.peerlink_ip.split('/')[0] }}
         peer-link {{ mlag.peerlink[ansible_network_os] }}
         domain-id {{ mlag_info.eos_domainid }}
         heartbeat-interval 2500
         reload-delay 150
-
 - name: Configure member port channels (EOS)
   connection: network_cli
   cli_config:
