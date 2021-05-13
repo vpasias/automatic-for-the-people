@@ -7,7 +7,7 @@
          no switchport
          no shut
          ip address unnumbered Loopback 0
-         mtu 9200
+         mtu 9216
   with_items: "{{ isl_ports[ansible_network_os] }}"
   tags: ospf-isl-cfg
 
@@ -20,4 +20,3 @@
          ip ospf area 0.0.0.0
   with_items: "{{ isl_ports[ansible_network_os] }}"
   tags: ospf-isl-cfg
-
