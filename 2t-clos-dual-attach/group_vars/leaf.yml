@@ -32,7 +32,10 @@ portchannels:
         Eth1/7-8
 
 mlag:
-  peerlink_vlan: 4094
+  peerlink_vlan:
+    cumulus: 4094
+    eos: 4094
+    nxos: 3960
   peerlink:
     cumulus: peerlink
     eos: port-channel1
@@ -91,9 +94,14 @@ mlag:
         mlag_id: 6
 
 mh:
-  peerlink_vlan: 4094
+  peerlink_vlan:
+    cumulus: 4094
+    eos: 4094
+    nxos: 3960
   peerlink:
     cumulus: peerlink
+    eos: port-channel1
+    nxos: port-channel1
   mh_hostchannels:
     cumulus:
       - iface: bond01
