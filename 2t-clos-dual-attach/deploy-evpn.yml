@@ -1,4 +1,17 @@
 ---
+- hosts: localhost
+  tasks:
+    - name: Makeup the directory to store configs
+      file:
+        path: "configs/{{item}}/"
+        state: directory
+      with_items:
+        - nxos
+        - eos
+        - junos
+        - cumulus
+      tags: backup
+      
 - hosts: spine:leaf:exit:dcedge
   gather_facts: false
   roles:
@@ -11,7 +24,7 @@
   handlers:
     - name: ifup interfaces
       become: yes
-      command: ifup -a
+      command: ifup -a --force
     - name: reload FRR
       become: yes
       service:
@@ -49,7 +62,7 @@
   handlers:
     - name: ifup interfaces
       become: yes
-      command: ifup -a
+      command: ifup -a --force
     - name: reload FRR
       become: yes
       service:
@@ -66,7 +79,7 @@
   handlers:
     - name: ifup interfaces
       become: yes
-      command: ifup -a
+      command: ifup -a --force
     - name: reload FRR
       become: yes
       service:
@@ -83,7 +96,7 @@
   handlers:
     - name: ifup interfaces
       become: yes
-      command: ifup -a
+      command: ifup -a --force
     - name: restart FRR
       become: yes
       service:
@@ -102,7 +115,7 @@
   handlers:
     - name: ifup interfaces
       become: yes
-      command: ifup -a
+      command: ifup -a --force
     - name: restart FRR
       become: yes
       service:
@@ -119,6 +132,8 @@
   roles:
     - role: cfg-save
       tags: save
+    - role: cfg-backup
+      tags: backup
     - role: cfg-reboot
       tags: reboot
       when: ansible_network_os == "eos"
