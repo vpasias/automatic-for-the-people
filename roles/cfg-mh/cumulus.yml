@@ -8,14 +8,14 @@
       {% for port in item.ports %}
       auto {{ port }}
       iface {{ port }}
-         mtu 9000      
+         mtu 9216    
          post-up ip link set promisc on dev {{ port }}
       {% endfor %}
       #
       auto {{ item.iface }}
       iface {{ item.iface }}
          bond-slaves {{ item.ports|join(' ') }}
-         mtu 9000
+         mtu 9216
          es-sys-mac {{ item.mh_mac }}
          bond-mode 802.3ad
          bond-min-links 1
