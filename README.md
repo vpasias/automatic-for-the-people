@@ -7,7 +7,7 @@ The Vagrant boxes used in the simulation include:
 
 | Vagrant Box                       | Version     |
 |-----------------------------------|-------------|
-| CumulusCommunity/cumulus-vx       | > 3.7.9, <=4.2 |
+| CumulusCommunity/cumulus-vx       | > 4.2       |
 | cisco/nxosv                       | 9.3.4       |
 | arista/veos                       | 4.23.5M     |
 | Juniper/vqfx10k                   | 0.4.0       |
